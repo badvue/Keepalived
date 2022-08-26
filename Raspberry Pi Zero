@@ -1,0 +1,27 @@
+vrrp_script chk_ftl {
+script "/etc/scripts/chk_ftl"
+interval 1
+weight -10
+}
+
+vrrp_instance PIHOLE {
+state BACKUP
+interface wlan0
+virtual_router_id 55
+priority 230
+advert_int 1
+
+authentication {
+auth_type PASS
+auth_pass XXXXXXXX
+}
+
+virtual_ipaddress {
+192.168.50.49/24
+}
+
+virtual_ipaddress_excluded {
+XXXX:XXXX:XXXX:XXX:XXXX:XXXX:XXXX:XXXX/64
+}
+
+}
